@@ -69,8 +69,11 @@ const countries = ['USA', 'UK', 'USA'];
 
 
 // CREATE HTML FOR TERRITORY TOTALS
-
-const territoryTotalHtml = '<p style="color: green">Total territories covered is: nnn</p>';
+const totalTerritories = employees.reduce((acc, employee) => {
+	const sum = employee.territoryIDs.length;
+	return acc + sum;
+},0)
+const territoryTotalHtml = `<p style="color: green">Total territories covered is: ${totalTerritories}</p>`;
 
 document.querySelector('#app').innerHTML = /*html*/ `
 <h1>Higher Order Graphics</h1>
