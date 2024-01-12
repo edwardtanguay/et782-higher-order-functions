@@ -9,6 +9,40 @@ import employees from './data/employees.json';
 // 	console.log(`${employee.lastName}, ${employee.firstName}`);
 // }
 
+// EXAMPLE OF REDUCE
+// reduce an array of numbers to their sum
+
+const nums = [3, 6, 2, 6, 3];
+
+//old-style
+// let sum = 0;
+// for (const num of nums) {
+// 	sum += num;
+// }
+// console.log(sum);
+
+//with reduce
+const sum = nums.reduce((acc, num) => {
+	return acc + num;
+}, 0);
+// console.log('sum', sum);
+
+//PROOF THAT REDUCE CAN EMULATE ALL OTHER HIGHER ORDER FUNCTIONS
+//REDUCE AS MAP
+// map: array --> array2
+
+// convert nums to nums * 2 with map
+const squaredWithMapNums = nums.map(m => m * 2);
+// console.log('with map', squaredWithMapNums);
+
+// convert nums to nums * 2 with reduce
+const squaredWithReduceNums = nums.reduce((acc, num) => {
+	acc.push(num * 2);
+	return acc;
+},[]);
+console.log('with reduce', squaredWithReduceNums);
+
+
 const checkTaxes = (employee) => {
 	// logic that checks a tax database
 	return false;
@@ -28,11 +62,15 @@ const frontendEmployees = employees.map(employee => {
 
 // includes examples
 const countries = ['USA', 'UK', 'USA'];
-console.log('uk', countries.includes('UK'));
-console.log('usa', countries.includes('USA'));
-console.log('fr', countries.includes('FR'));
+// console.log('uk', countries.includes('UK'));
+// console.log('usa', countries.includes('USA'));
+// console.log('fr', countries.includes('FR'));
+// console.log(111, 'UK'.includes('UK'));
 
-console.log(111, 'UK'.includes('UK'));
+
+// CREATE HTML FOR TERRITORY TOTALS
+
+const territoryTotalHtml = '<p style="color: green">Total territories covered is: nnn</p>';
 
 document.querySelector('#app').innerHTML = /*html*/ `
 <h1>Higher Order Graphics</h1>
@@ -56,6 +94,10 @@ document.querySelector('#app').innerHTML = /*html*/ `
 <h2>(Winnie) All employees that services territories: 1833 or 6897, show employees as FirstName LastName (234234, 234234, 234434)</h2>
 <ul> ${employees.filter(m => m.territoryIDs.includes(1833) || m.territoryIDs.includes(6897)).map(m => `<li>${m.firstName} ${m.lastName} (${m.territoryIDs.join(", ")})</li>`).join('')}
 </ul> 
+
+<h2>Show total territories covered by all employees, e.g. "Total territories covered is 38."</h2>
+${territoryTotalHtml}
+
 
 
 
