@@ -1,4 +1,4 @@
-import './style.css'
+import './style.css';
 import employees from './data/employees.json';
 
 // SHOW EMPLOYEES AS ARRAY
@@ -12,7 +12,7 @@ import employees from './data/employees.json';
 const checkTaxes = (employee) => {
 	// logic that checks a tax database
 	return false;
-}
+};
 
 // USE MAP TO CONVERT employee TO frontendEmployees (firstName, lastName, city)
 const frontendEmployees = employees.map(employee => {
@@ -26,7 +26,13 @@ const frontendEmployees = employees.map(employee => {
 	};
 });
 
-console.log(frontendEmployees);
+// includes examples
+const countries = ['USA', 'UK', 'USA'];
+console.log('uk', countries.includes('UK'));
+console.log('usa', countries.includes('USA'));
+console.log('fr', countries.includes('FR'));
+
+console.log(111, 'UK'.includes('UK'));
 
 document.querySelector('#app').innerHTML = /*html*/ `
 <h1>Higher Order Graphics</h1>
@@ -36,4 +42,27 @@ document.querySelector('#app').innerHTML = /*html*/ `
 <ul>
 	${frontendEmployees.map(m => `<li>${m.lastName}, ${m.firstName} (${m.headquarters})</li>`).join('')}
 </ul>
-`
+
+<h2>Last name and number of territories</h2>
+<ul>
+	${employees.map(m => `<li>${m.lastName} (has ${m.territoryIDs.length} territories)</li>`).join('')}
+</ul>
+
+<h2>All UK employees listed as Last Name, First Name</h2>
+<ul>
+	${employees.filter(m => m.address.country === 'UK').map(m => `<li>${m.lastName}, ${m.firstName}</li>`).join('')}
+</ul>
+
+<h2>(Winnie) All employees that services territories: 1833 or 6897</h2>
+<ul> ${employees.filter(m => m.territoryIDs.includes(1833) || m.territoryIDs.includes(6897)).map(m => `nnn`)}
+</ul>
+
+
+
+
+
+
+<h2>(Phil) All employees that have "french" in notes</h2>
+
+<h2>(???) All USA employees listed as Last Name, First Name, City</h2>
+`;
