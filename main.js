@@ -54,7 +54,7 @@ document.querySelector('#app').innerHTML = /*html*/ `
 </ul>
 
 <h2>(Winnie) All employees that services territories: 1833 or 6897</h2>
-<ul> ${employees.filter(m => m.territoryIDs.includes(1833) || m.territoryIDs.includes(6897)).map(m => `nnn`)}
+<ul> ${employees.filter(m => m.territoryIDs.includes(1833) || m.territoryIDs.includes(6897)).map(m => `<li>nnn</li>`).join('')}
 </ul>
 
 
